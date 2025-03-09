@@ -21,12 +21,11 @@ public class App {
         ProductBasket.addProductBasket(cookie);
         ProductBasket.addProductBasket(meat);
         ProductBasket.addProductBasket(milk);
-        System.out.println(Arrays.toString(ProductBasket.nameProductBasket));
-        System.out.println(Arrays.toString(ProductBasket.priceProductBasket));
+        System.out.println(Arrays.toString(ProductBasket.myProductBasket));
+
 
         ProductBasket.addProductBasket(salt);
-        System.out.println(Arrays.toString(ProductBasket.nameProductBasket));
-        System.out.println(Arrays.toString(ProductBasket.priceProductBasket));
+        System.out.println(Arrays.toString(ProductBasket.myProductBasket));
 
         System.out.println("Общая стоимость корзины: " + ProductBasket.basketTotalCost());
 

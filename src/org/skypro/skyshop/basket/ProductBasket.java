@@ -2,62 +2,62 @@ package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class ProductBasket {
     private static final int basketSize = 5;
-    public static String[] nameProductBasket = new String[basketSize];
-    public static int[] priceProductBasket = new int[basketSize];
+    public static Product[] myProductBasket = new Product[basketSize];
 
     public static void addProductBasket(Product name) {
         for (int i = 0; i < basketSize; i++) {
-            if (nameProductBasket[i] == null) {
-                nameProductBasket[i] = name.getName();
-                priceProductBasket[i] = name.getPrice();
-                break;
-            } else if (i == basketSize - 1) {
-                System.out.println("Невозможно добавить продукт");
+            if (myProductBasket[i] == null) {
+                myProductBasket[i] = name;
+                return;
             }
         }
+        System.out.println("Невозможно добавить продукт");
     }
 
     public static int basketTotalCost() {
         int totalCost = 0;
+        if (myProductBasket[0] == null) {
+            return totalCost;
+        }
         for (int i = 0; i < basketSize; i++) {
-            totalCost += priceProductBasket[i];
+            totalCost += myProductBasket[i].getPrice();
         }
         return totalCost;
     }
 
     public static void basketContents() {
-        if (nameProductBasket[0] == null) {
+        if (myProductBasket[0] == null) {
             System.out.println("В корзине пусто");
-        } else {
-            for (int i = 0; i < basketSize; i++) {
-                if (nameProductBasket[i] != null) {
-                    System.out.println(nameProductBasket[i] + ": " + priceProductBasket[i]);
-                }
-            }
-            System.out.println("Итого: " + basketTotalCost());
+            return;
         }
+        for (int i = 0; i < basketSize; i++) {
+            if (myProductBasket[i] != null) {
+                System.out.println(myProductBasket[i].getName() + ": " + myProductBasket[i].getPrice());
+            }
+        }
+        System.out.println("Итого: " + basketTotalCost());
+
     }
 
     public static boolean checkingProduct(Product name) {
-        boolean checking = false;
+        if (myProductBasket[0] == null) {
+            return false;
+        }
         for (int i = 0; i < basketSize; i++) {
-            if (Objects.equals(nameProductBasket[i], name.getName())) {
-                checking = true;
-                break;
+            if (Objects.equals(myProductBasket[i].getName(), name.getName())) {
+                return true;
             }
         }
-        return checking;
+        return false;
     }
 
     public static void eraseProductBasket() {
-        for (int i = 0; i < basketSize; i++) {
-            nameProductBasket[i] = null;
-            priceProductBasket[i] = 0;
-        }
+        Arrays.fill(myProductBasket, null);
     }
 }
 
