@@ -35,12 +35,17 @@ public class ProductBasket {
             System.out.println("В корзине пусто");
             return;
         }
+        int specialCount = 0;
         for (int i = 0; i < basketSize; i++) {
             if (myProductBasket[i] != null) {
-                System.out.println(myProductBasket[i].getName() + ": " + myProductBasket[i].getPrice());
+                System.out.println(myProductBasket[i]);
+            }
+            if (myProductBasket[i].isSpecial()) {
+                specialCount += 1;
             }
         }
         System.out.println("Итого: " + basketTotalCost());
+        System.out.println("Специальных товаров: " + specialCount);
 
     }
 
