@@ -1,18 +1,20 @@
 package org.skypro.skyshop;
 
 import org.skypro.skyshop.basket.ProductBasket;
-import org.skypro.skyshop.product.Product;
+import org.skypro.skyshop.product.DiscountedProduct;
+import org.skypro.skyshop.product.FixPriceProduct;
+import org.skypro.skyshop.product.SimpleProduct;
 
 import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) {
-        Product apple = new Product("Яблоки", 100);
-        Product razor = new Product("Бритва", 500);
-        Product cookie = new Product("Печенье", 200);
-        Product meat = new Product("Мясо", 450);
-        Product milk = new Product("Молоко", 150);
-        Product salt = new Product("Соль", 50);
+        SimpleProduct apple = new SimpleProduct("Яблоки", 100);
+        FixPriceProduct razor = new FixPriceProduct("Бритва");
+        SimpleProduct cookie = new SimpleProduct("Печенье",200);
+        DiscountedProduct meat = new DiscountedProduct("Мясо", 777, 25);
+        SimpleProduct milk = new SimpleProduct("Молоко", 150);
+        SimpleProduct salt = new SimpleProduct("Соль", 50);
 
         System.out.println(apple);
 
@@ -32,13 +34,18 @@ public class App {
         ProductBasket.basketContents();
 
         System.out.println("Проверка наличия продукта: " + apple + " - " + ProductBasket.checkingProduct(apple));
-        System.out.println("Проверка наличия продукта: " + salt + " - " + ProductBasket.checkingProduct(salt));
+        System.out.println("Проверка наличия продукта: " + razor + " - " + ProductBasket.checkingProduct(razor));
+        System.out.println("Проверка наличия продукта: " + meat + " - " + ProductBasket.checkingProduct(meat));
 
         ProductBasket.eraseProductBasket();
 
         ProductBasket.basketContents();
+
         System.out.println("Общая стоимость корзины: " + ProductBasket.basketTotalCost());
+
         System.out.println("Проверка наличия продукта: " + apple + " - " + ProductBasket.checkingProduct(apple));
+        System.out.println("Проверка наличия продукта: " + razor + " - " + ProductBasket.checkingProduct(razor));
+        System.out.println("Проверка наличия продукта: " + meat + " - " + ProductBasket.checkingProduct(meat));
 
     }
 }
