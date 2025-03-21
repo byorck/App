@@ -1,9 +1,9 @@
 package org.skypro.skyshop;
 
+import org.skypro.skyshop.Searchable.SearchEngine;
+import org.skypro.skyshop.Searchable.Searchable;
 import org.skypro.skyshop.basket.ProductBasket;
-import org.skypro.skyshop.product.DiscountedProduct;
-import org.skypro.skyshop.product.FixPriceProduct;
-import org.skypro.skyshop.product.SimpleProduct;
+import org.skypro.skyshop.product.*;
 
 import java.util.Arrays;
 
@@ -11,7 +11,7 @@ public class App {
     public static void main(String[] args) {
         SimpleProduct apple = new SimpleProduct("Яблоки", 100);
         FixPriceProduct razor = new FixPriceProduct("Бритва");
-        SimpleProduct cookie = new SimpleProduct("Печенье",200);
+        SimpleProduct cookie = new SimpleProduct("Печенье", 200);
         DiscountedProduct meat = new DiscountedProduct("Мясо", 777, 25);
         SimpleProduct milk = new SimpleProduct("Молоко", 150);
         SimpleProduct salt = new SimpleProduct("Соль", 50);
@@ -24,7 +24,6 @@ public class App {
         ProductBasket.addProductBasket(meat);
         ProductBasket.addProductBasket(milk);
         System.out.println(Arrays.toString(ProductBasket.myProductBasket));
-
 
         ProductBasket.addProductBasket(salt);
         System.out.println(Arrays.toString(ProductBasket.myProductBasket));
@@ -47,5 +46,41 @@ public class App {
         System.out.println("Проверка наличия продукта: " + razor + " - " + ProductBasket.checkingProduct(razor));
         System.out.println("Проверка наличия продукта: " + meat + " - " + ProductBasket.checkingProduct(meat));
 
+
+        System.out.println("ДЗ: 'ООП. Полиморфизм. Интерфейсы'");
+
+        Article appleAbout = new Article("Яблоки", "Свежие яблоки");
+        Article razorAbout = new Article("Бритва", "Острая бритва");
+        Article cookieAbout = new Article("Печенье", "Хрустящее печенье");
+        Article meatAbout = new Article("Мясо", "Говяжье");
+        Article milkAbout = new Article("Молоко", "Пастеризованное");
+        Article saltAbout = new Article("Соль", "Йодированная");
+
+        SearchEngine elements = new SearchEngine(5);
+
+        elements.add(apple);
+        elements.add(appleAbout);
+        elements.add(razor);
+        elements.add(razorAbout);
+        elements.add(cookie);
+        elements.add(cookieAbout);
+        elements.add(meat);
+        elements.add(meatAbout);
+        elements.add(milk);
+        elements.add(milkAbout);
+        elements.add(salt);
+        elements.add(saltAbout);
+
+        Searchable[] result = elements.search("ябл");
+        System.out.println(Arrays.toString(result));
+        Searchable[] result2 = elements.search("моло");
+        System.out.println(Arrays.toString(result2));
+        Searchable[] result3 = elements.search("ПЕЧЕНЬ");
+        System.out.println(Arrays.toString(result3));
+        Searchable[] result4 = elements.search("осТрая");
+        System.out.println(Arrays.toString(result4));
+
+
     }
 }
+
