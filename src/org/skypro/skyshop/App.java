@@ -66,9 +66,7 @@ public class App {
         elements.add(cookieAbout);
         elements.add(meat);
         elements.add(meatAbout);
-        elements.add(milk);
         elements.add(milkAbout);
-        elements.add(salt);
         elements.add(saltAbout);
 
         Searchable[] result = elements.search("ябл");
@@ -79,6 +77,8 @@ public class App {
         System.out.println(Arrays.toString(result3));
         Searchable[] result4 = elements.search("осТрая");
         System.out.println(Arrays.toString(result4));
+        Searchable[] result5 = elements.search("я");
+        System.out.println(Arrays.toString(result5));
 
 
     }

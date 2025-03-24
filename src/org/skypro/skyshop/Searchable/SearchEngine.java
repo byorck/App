@@ -1,8 +1,8 @@
 package org.skypro.skyshop.Searchable;
 
 public class SearchEngine {
-    Searchable[] elements;
-    int index;
+    private Searchable[] elements;
+    private int index;
 
     public SearchEngine(int size) {
         this.elements = new Searchable[size];
@@ -13,11 +13,12 @@ public class SearchEngine {
         Searchable[] results = new Searchable[5];
         int count = 0;
         for (Searchable element : elements) {
-            if (element == null) continue;
-            if (element.searchableTerm().toLowerCase().contains(query.toLowerCase())) {
+            if (element != null && element.searchableTerm().toLowerCase().contains(query.toLowerCase())) {
                 results[count] = element;
                 count++;
-                if (count == 5) break;
+                if (count == 5) {
+                    break;
+                }
             }
         }
         return results;
@@ -27,6 +28,8 @@ public class SearchEngine {
         if (index < elements.length) {
             elements[index] = element;
             index++;
+        } else {
+            System.out.println("Массив элементов, по которым можно искать, переполнен");
         }
     }
 }
