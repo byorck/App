@@ -80,7 +80,41 @@ public class App {
         Searchable[] result5 = elements.search("я");
         System.out.println(Arrays.toString(result5));
 
+        System.out.println("ДЗ: 'Исключения в Java'");
 
+        try {
+            DiscountedProduct meat2 = new DiscountedProduct("null", 50, 150);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            SimpleProduct salt3 = new SimpleProduct("null", 0);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            SimpleProduct salt3 = new SimpleProduct(" ", 100);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            FixPriceProduct razor2 = new FixPriceProduct(null);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
+        SearchEngine elements2 = new SearchEngine(5);
+        elements2.add(cookie);
+        elements2.add(cookieAbout);
+        elements2.add(meat);
+        elements2.add(meatAbout);
+
+        System.out.println(Arrays.toString(elements2.search("ье")));
+        System.out.println(elements2.findingMostSuitableElement("ье"));
+        System.out.println(elements2.findingMostSuitableElement("gье"));
     }
 }
 
