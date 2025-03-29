@@ -3,11 +3,14 @@ package org.skypro.skyshop.product;
 import org.skypro.skyshop.Searchable.Searchable;
 
 public abstract class Product implements Searchable {
-    private final String name;
-
+    private String name;
 
     public Product(String name) {
-        this.name = name;
+        if (name != null && !name.isBlank()) {
+            this.name = name;
+        } else {
+            throw new IllegalArgumentException("Название продукта не может быть пустой строкой или null");
+        }
     }
 
     public String getName() {
