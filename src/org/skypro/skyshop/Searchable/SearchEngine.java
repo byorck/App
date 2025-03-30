@@ -36,7 +36,7 @@ public class SearchEngine {
         return results;
     }
 
-    public String findingMostSuitableElement(String searchingElement) {
+    public String findingMostSuitableElement(String searchingElement) throws BestResultNotFound {
         Searchable[] intermediateResults = search(searchingElement);
         int resultIndex = 0;
         int mostBiggestResult = 0;
@@ -58,11 +58,7 @@ public class SearchEngine {
             }
         }
         if (intermediateResults[resultIndex] == null) {
-            try {
-                throw new BestResultNotFound(searchingElement);
-            } catch (BestResultNotFound e) {
-                throw new RuntimeException(e);
-            }
+            throw new BestResultNotFound(searchingElement);
         }
         return intermediateResults[resultIndex].toString();
     }

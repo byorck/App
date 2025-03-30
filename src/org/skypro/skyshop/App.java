@@ -8,7 +8,7 @@ import org.skypro.skyshop.product.*;
 import java.util.Arrays;
 
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws BestResultNotFound {
         SimpleProduct apple = new SimpleProduct("Яблоки", 100);
         FixPriceProduct razor = new FixPriceProduct("Бритва");
         SimpleProduct cookie = new SimpleProduct("Печенье", 200);
