@@ -2,65 +2,58 @@ package org.skypro.skyshop.Searchable;
 
 import org.skypro.skyshop.product.BestResultNotFound;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 
 public class SearchEngine {
-    private Searchable[] elements;
-    private int index;
+    private List<Searchable> elements;
 
-    public SearchEngine(int size) {
-        this.elements = new Searchable[size];
-        this.index = 0;
+    public SearchEngine() {
+        this.elements = new ArrayList<>();
     }
+
 
     public void add(Searchable element) {
-        if (index < elements.length) {
-            elements[index] = element;
-            index++;
-        } else {
-            System.out.println("Массив элементов, по которым можно искать, переполнен");
-        }
+        elements.add(element);
     }
 
-    public Searchable[] search(String query) {
-        Searchable[] results = new Searchable[5];
-        int count = 0;
+    public List<Searchable> search(String query) {
+        List<Searchable> results = new LinkedList<>();
         for (Searchable element : elements) {
             if (element != null && element.searchableTerm().toLowerCase().contains(query.toLowerCase())) {
-                results[count] = element;
-                count++;
-                if (count == 5) {
-                    break;
-                }
+                results.add(element);
             }
         }
         return results;
     }
 
     public String findingMostSuitableElement(String searchingElement) throws BestResultNotFound {
-        Searchable[] intermediateResults = search(searchingElement);
+        List<Searchable> intermediateResults = search(searchingElement);
         int resultIndex = 0;
         int mostBiggestResult = 0;
-        for (int i = 0; i < intermediateResults.length; i++) {
-            if (intermediateResults[i] == null) {
-                continue;
-            }
+        if (intermediateResults.isEmpty()) {
+            throw new BestResultNotFound(searchingElement);
+        }
+        for (int i = 0; i < intermediateResults.size(); i++) {
             int index = 0;
             int countResult = 0;
-            int indexSubstring = intermediateResults[i].toString().toLowerCase().indexOf(searchingElement.toLowerCase(), index);
+            int indexSubstring = intermediateResults.get(i).toString().toLowerCase().indexOf(searchingElement.toLowerCase(), index);
             while (indexSubstring != -1) {
                 countResult++;
                 index = indexSubstring + searchingElement.length();
-                indexSubstring = intermediateResults[i].toString().toLowerCase().indexOf(searchingElement.toLowerCase(), index);
+                indexSubstring = intermediateResults.get(i).toString().toLowerCase().indexOf(searchingElement.toLowerCase(), index);
             }
             if (countResult > mostBiggestResult) {
                 resultIndex = i;
                 mostBiggestResult = countResult;
             }
         }
-        if (intermediateResults[resultIndex] == null) {
+        if (intermediateResults.isEmpty()) {
             throw new BestResultNotFound(searchingElement);
         }
-        return intermediateResults[resultIndex].toString();
+        return intermediateResults.get(resultIndex).toString();
     }
 }
 

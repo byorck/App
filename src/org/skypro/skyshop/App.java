@@ -5,7 +5,9 @@ import org.skypro.skyshop.Searchable.Searchable;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.*;
 
-import java.util.Arrays;
+import java.util.LinkedList;
+
+import static org.skypro.skyshop.basket.ProductBasket.myProductBasket;
 
 public class App {
     public static void main(String[] args) throws BestResultNotFound {
@@ -23,10 +25,10 @@ public class App {
         ProductBasket.addProductBasket(cookie);
         ProductBasket.addProductBasket(meat);
         ProductBasket.addProductBasket(milk);
-        System.out.println(Arrays.toString(ProductBasket.myProductBasket));
+        System.out.println(myProductBasket);
 
         ProductBasket.addProductBasket(salt);
-        System.out.println(Arrays.toString(ProductBasket.myProductBasket));
+        System.out.println(myProductBasket);
 
         System.out.println("Общая стоимость корзины: " + ProductBasket.basketTotalCost());
 
@@ -34,7 +36,7 @@ public class App {
 
         System.out.println("Проверка наличия продукта: " + apple + " - " + ProductBasket.checkingProduct(apple));
         System.out.println("Проверка наличия продукта: " + razor + " - " + ProductBasket.checkingProduct(razor));
-        System.out.println("Проверка наличия продукта: " + meat + " - " + ProductBasket.checkingProduct(meat));
+        System.out.println("Проверка наличия продукта: " + salt + " - " + ProductBasket.checkingProduct(salt));
 
         ProductBasket.eraseProductBasket();
 
@@ -46,7 +48,6 @@ public class App {
         System.out.println("Проверка наличия продукта: " + razor + " - " + ProductBasket.checkingProduct(razor));
         System.out.println("Проверка наличия продукта: " + meat + " - " + ProductBasket.checkingProduct(meat));
 
-
         System.out.println("ДЗ: 'ООП. Полиморфизм. Интерфейсы'");
 
         Article appleAbout = new Article("Яблоки", "Свежие яблоки");
@@ -56,7 +57,7 @@ public class App {
         Article milkAbout = new Article("Молоко", "Пастеризованное");
         Article saltAbout = new Article("Соль", "Йодированная");
 
-        SearchEngine elements = new SearchEngine(5);
+        SearchEngine elements = new SearchEngine();
 
         elements.add(apple);
         elements.add(appleAbout);
@@ -69,16 +70,12 @@ public class App {
         elements.add(milkAbout);
         elements.add(saltAbout);
 
-        Searchable[] result = elements.search("ябл");
-        System.out.println(Arrays.toString(result));
-        Searchable[] result2 = elements.search("моло");
-        System.out.println(Arrays.toString(result2));
-        Searchable[] result3 = elements.search("ПЕЧЕНЬ");
-        System.out.println(Arrays.toString(result3));
-        Searchable[] result4 = elements.search("осТрая");
-        System.out.println(Arrays.toString(result4));
-        Searchable[] result5 = elements.search("я");
-        System.out.println(Arrays.toString(result5));
+
+        System.out.println("Найдено: " + elements.search("ябл"));
+        System.out.println("Найдено: " + elements.search("моло"));
+        System.out.println("Найдено: " + elements.search("ПЕЧЕНЬ"));
+        System.out.println("Найдено: " + elements.search("осТрая"));
+        System.out.println("Найдено: " + elements.search("я"));
 
         System.out.println("ДЗ: 'Исключения в Java'");
 
@@ -106,15 +103,39 @@ public class App {
             System.out.println(e.getMessage());
         }
 
-        SearchEngine elements2 = new SearchEngine(5);
+        SearchEngine elements2 = new SearchEngine();
+
+//        elements2.findingMostSuitableElement("ье");
+
         elements2.add(cookie);
         elements2.add(cookieAbout);
         elements2.add(meat);
         elements2.add(meatAbout);
 
-        System.out.println(Arrays.toString(elements2.search("ье")));
-        System.out.println(elements2.findingMostSuitableElement("ье"));
-        System.out.println(elements2.findingMostSuitableElement("gье"));
+        System.out.println("Найдено: " + elements2.search("ье"));
+        System.out.println("Наиболее подходящий элемент поиска: " + elements2.findingMostSuitableElement("ье"));
+
+//        elements2.findingMostSuitableElement("gье");
+
+        System.out.println("ДЗ: Java Collections Framework: List");
+        ProductBasket.addProductBasket(apple);
+        ProductBasket.addProductBasket(razor);
+        ProductBasket.addProductBasket(cookie);
+        ProductBasket.addProductBasket(meat);
+        ProductBasket.addProductBasket(razor);
+        System.out.println(myProductBasket);
+
+        System.out.println("Удалено из корзины: " + ProductBasket.deleteProductByName(razor));
+
+        ProductBasket.basketContents();
+
+        System.out.println("Удалено из корзины: " + ProductBasket.deleteProductByName(razor));
+
+        if (ProductBasket.deleteProductByName(razor).isEmpty()) {
+            System.out.println("Список пуст");
+        }
+
+        System.out.println(myProductBasket);
     }
 }
 
