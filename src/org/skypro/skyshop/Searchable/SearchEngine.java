@@ -4,10 +4,11 @@ import org.skypro.skyshop.product.BestResultNotFound;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 
 public class SearchEngine {
-    private ArrayList<Searchable> elements;
+    private List<Searchable> elements;
 
     public SearchEngine() {
         this.elements = new ArrayList<>();
@@ -18,8 +19,8 @@ public class SearchEngine {
         elements.add(element);
     }
 
-    public LinkedList<Searchable> search(String query) {
-        LinkedList<Searchable> results = new LinkedList<>();
+    public List<Searchable> search(String query) {
+        List<Searchable> results = new LinkedList<>();
         for (Searchable element : elements) {
             if (element != null && element.searchableTerm().toLowerCase().contains(query.toLowerCase())) {
                 results.add(element);
@@ -29,7 +30,7 @@ public class SearchEngine {
     }
 
     public String findingMostSuitableElement(String searchingElement) throws BestResultNotFound {
-        LinkedList<Searchable> intermediateResults = search(searchingElement);
+        List<Searchable> intermediateResults = search(searchingElement);
         int resultIndex = 0;
         int mostBiggestResult = 0;
         if (intermediateResults.isEmpty()) {

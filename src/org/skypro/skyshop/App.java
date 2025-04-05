@@ -71,16 +71,11 @@ public class App {
         elements.add(saltAbout);
 
 
-        LinkedList<Searchable> result = elements.search("ябл");
-        System.out.println("Найдено: " + result);
-        LinkedList<Searchable> result2 = elements.search("моло");
-        System.out.println("Найдено: " + result2);
-        LinkedList<Searchable> result3 = elements.search("ПЕЧЕНЬ");
-        System.out.println("Найдено: " + result3);
-        LinkedList<Searchable> result4 = elements.search("осТрая");
-        System.out.println("Найдено: " + result4);
-        LinkedList<Searchable> result5 = elements.search("я");
-        System.out.println("Найдено: " + result5);
+        System.out.println("Найдено: " + elements.search("ябл"));
+        System.out.println("Найдено: " + elements.search("моло"));
+        System.out.println("Найдено: " + elements.search("ПЕЧЕНЬ"));
+        System.out.println("Найдено: " + elements.search("осТрая"));
+        System.out.println("Найдено: " + elements.search("я"));
 
         System.out.println("ДЗ: 'Исключения в Java'");
 
