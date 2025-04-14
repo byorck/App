@@ -59,7 +59,6 @@ public class ProductBasket {
         }
         System.out.println("Итого: " + basketTotalCost());
         System.out.println("Специальных товаров: " + specialCount);
-
     }
 
     public static boolean checkingProduct(Product name) {

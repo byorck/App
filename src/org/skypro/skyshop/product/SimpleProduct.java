@@ -16,7 +16,6 @@ public class SimpleProduct extends Product {
         return false;
     }
 
-
     @Override
     public int getPrice() {
         return price;
