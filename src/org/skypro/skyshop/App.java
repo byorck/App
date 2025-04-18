@@ -1,10 +1,10 @@
 package org.skypro.skyshop;
 
 import org.skypro.skyshop.Searchable.SearchEngine;
-import org.skypro.skyshop.Searchable.Searchable;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.*;
 
+import org.skypro.skyshop.Searchable.Searchable;
 import java.util.LinkedList;
 
 import static org.skypro.skyshop.basket.ProductBasket.myProductBasket;
@@ -60,16 +60,17 @@ public class App {
         SearchEngine elements = new SearchEngine();
 
         elements.add(apple);
+        elements.add(apple);
         elements.add(appleAbout);
         elements.add(razor);
         elements.add(razorAbout);
         elements.add(cookie);
         elements.add(cookieAbout);
         elements.add(meat);
+        elements.add(meat);
         elements.add(meatAbout);
         elements.add(milkAbout);
         elements.add(saltAbout);
-
 
         System.out.println("Найдено: " + elements.search("ябл"));
         System.out.println("Найдено: " + elements.search("моло"));
@@ -105,7 +106,7 @@ public class App {
 
         SearchEngine elements2 = new SearchEngine();
 
-//        elements2.findingMostSuitableElement("ье");
+//      elements2.findingMostSuitableElement("ье");
 
         elements2.add(cookie);
         elements2.add(cookieAbout);
@@ -115,7 +116,7 @@ public class App {
         System.out.println("Найдено: " + elements2.search("ье"));
         System.out.println("Наиболее подходящий элемент поиска: " + elements2.findingMostSuitableElement("ье"));
 
-//        elements2.findingMostSuitableElement("gье");
+//      elements2.findingMostSuitableElement("gье");
 
         System.out.println("ДЗ: Java Collections Framework: List");
         ProductBasket.addProductBasket(apple);
@@ -134,7 +135,6 @@ public class App {
         if (ProductBasket.deleteProductByName(razor).isEmpty()) {
             System.out.println("Список пуст");
         }
-
         System.out.println(myProductBasket);
     }
 }
